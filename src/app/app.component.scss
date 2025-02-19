@@ -1,0 +1,29 @@
+.navbar {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  background-color: black;
+}
+
+.side_content_basis {
+  display: flex;
+  flex-basis: auto;
+  flex-flow: row nowrap;
+  justify-content: start;
+  height: 100vh;
+}
+
+.sidebar {
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: orangered;
+  flex-basis: 10%;
+}
+
+.content {
+  display: flex;
+  flex-flow: row wrap;
+  background-color: ghostwhite;
+  flex-basis: 90%
+}
+

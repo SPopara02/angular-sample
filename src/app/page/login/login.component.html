@@ -1,0 +1,15 @@
+<h2>Welcome</h2>
+<h3>Sign in to continue:</h3>
+<div style="margin: 0 auto;">
+  <form [formGroup]="loginForm">
+    <mat-form-field appearance="outline" style="width: 100%;">
+      <mat-label>Korisnicko ime</mat-label>
+      <input matInput id="userField" placeholder="Unesite korisnicko ime" formControlName="userField" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="width: 100%;">
+      <mat-label>Lozinka</mat-label>
+      <input matInput id="passField" type="password" placeholder="Unesite korisnicko ime" formControlName="passField" />
+    </mat-form-field>
+  </form>
+  <button mat-flat-button (click)="login()">Uloguj se</button>
+</div>

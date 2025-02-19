@@ -1,0 +1,20 @@
+.dataform_base{
+    display: flex;
+    flex-flow: row nowrap;
+    height: 100vh;
+}
+.dataform_form{
+    display: flex;
+    flex-flow: column nowrap;
+    flex-basis: 10%
+}
+.dataform_table {
+  display: flex;
+  flex-flow: column nowrap;
+  flex-basis: 90%
+}
+
+.dataform_apps{
+    display: flex;
+    flex-flow: row nowrap;
+}

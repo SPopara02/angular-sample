@@ -1,0 +1,91 @@
+<div class="dataform_base">
+  <div class="dataform_form">
+    <form [formGroup]="dataForm">
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Ime</mat-label>
+        <input matInput id="nameField" placeholder="Unesite ime" formControlName="nameField" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Prezime</mat-label>
+        <input matInput id="surnameField" placeholder="Unesite prezime" formControlName="surnameField" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>E-mail</mat-label>
+        <input matInput id="emailField" placeholder="Unesite e-mail" formControlName="emailField" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Lozinka</mat-label>
+        <input matInput id="passField" type="password" placeholder="Unesite lozinku" formControlName="passField" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Potvrda lozinke</mat-label>
+        <input matInput id="repassField" type="password" placeholder="Ponovite lozinku" formControlName="repassField" />
+      </mat-form-field>
+      <div formArrayName="applications">
+        <div class="dataform_apps" *ngFor="let fa of applications.controls; let i = index" [formGroupName]="i">
+          <mat-form-field appearance="outline" style="width: 100%;" class="col-3">
+            <mat-label>Naziv tehnologije</mat-label>
+            <mat-select formControlName="nazivTeh" required>
+              <mat-option *ngFor="let tehnologija of listaTeh" [value]="tehnologija.id">
+                {{tehnologija.naziv}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" style="width: 100%;" class="col-3">
+            <mat-label>Naziv aplikacije</mat-label>
+              <input matInput placeholder="Ime aplikacije" formControlName="nazivApp" />
+          </mat-form-field>
+          <mat-form-field appearance="outline" style="width: 100%;" class="col-3">
+            <mat-label>Datum aplikacije</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="datumApp">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <button type="button" (click)="deleteFormGroup(i)">Obrisi</button>
+        </div>
+        <button type="button" (click)="addFormGroup()">Dodaj</button>
+      </div>
+    </form>
+    <button mat-flat-button (click)="saveUser()">Sacuvaj korisnika</button>
+  </div>
+  <div class="dataform_table">
+    <mat-table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="ime">
+        <mat-header-cell *matHeaderCellDef> Ime </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.nameField}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="prezime">
+        <mat-header-cell *matHeaderCellDef> Prezime </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.surnameField}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="e-mail">
+        <mat-header-cell *matHeaderCellDef> E-Mail </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.emailField}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="pass">
+        <mat-header-cell *matHeaderCellDef> Pass </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.passField}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef> Akcija </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-flat-button (click)="deleteUser(row)">Obrisi</button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayCols"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayCols"></mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons
+                   aria-label="Select posts page">
+    </mat-paginator>
+  </div>
+</div>
